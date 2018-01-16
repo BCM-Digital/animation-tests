@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 5rem;
+            font-size: 100%;
+            font-weight: 400;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .Container {
+            max-width: 50rem;
+            margin: 0 auto;
+        }
+
+        .Card {
+            visibility: hidden;
+            width: 100%;
+            display: block;
+            position: relative;
+        }
+
+        .Card + .Card {
+            margin-top: 2rem;
+        }
+
+        .Card::before {
+            content: "";
+            display: block;
+            padding-top: 56.25%;
+        }
+
+        .Card__box {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: #d21c38;
+        }
+
+        .Card__clip {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .Card__accent {
+            top: -5%;
+            left: -28%;
+            position: absolute;
+            border-radius: 50%;
+            width: calc(56.25% * 1.2);
+            height: calc(100% * 1.2);
+            background-color: #bd1932;
+            transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+            transition: all 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .Card__image {
+            top: 0;
+            left: 0;
+            margin-left: 9%;
+            margin-top: -1rem;
+            position: absolute;
+            background-size: 60%;
+            width: calc(100% + 2rem);
+            height: calc(100% + 2rem);
+            background-position: right;
+            background-repeat: no-repeat;
+            transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+            transition: all 5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .Card__content {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            position: absolute;
+            padding: 0 0 0 3rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .Card__link {
+            color: white;
+            margin-top: 1rem;
+            text-decoration: none;
+            transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+            transition: all 5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .Card__link svg {
+            margin-right: 0.5rem;
+        }
+
+        .Card__copy {
+            color: white;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+            transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+            transition: all 5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .Card:hover .Card__accent {
+            transform: scale3d(1.3, 1.3, 1.3) translate3d(4rem, 0, 0);
+        }
+
+        .Card:hover .Card__image {
+            transform: scale3d(1, 1, 1) translate3d(0.5rem, 0, 0);
+        }
+
+        .Card:hover .Card__link {
+            transform: scale3d(1, 1, 1) translate3d(1rem, 0, 0);
+        }
+
+        .Card:hover .Card__copy {
+            transform: scale3d(1, 1, 1) translate3d(1rem, 0, 0);
+        }
+
+        .Card--outbound .Card__accent,
+        .Card--outbound:hover .Card__accent {
+            transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+            transform: scale3d(1.8, 1.8, 1.8) translate3d(11rem, 0, 0);
+        }
+
+        .Card--style-mango .Card__link,
+        .Card--style-mango .Card__copy {
+            color: black;
+        }
+
+        .Card--style-mango .Card__box {
+            background-color: #f8a500;
+        }
+
+        .Card--style-mango .Card__accent {
+            background-color: #ffaf05;
+        }
+    </style>
+</head>
+<body>
+    <div class="Container">
+        <a href="http://google.com" class="js-card Card">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('cat.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">A cats search for the purrrrrfect bank.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card Card--style-mango">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('mango.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">What if we helped evolve an Aussie icon.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('cat.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">A cats search for the purrrrrfect bank.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card Card--style-mango">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('mango.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">What if we helped evolve an Aussie icon.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('cat.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">A cats search for the purrrrrfect bank.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card Card--style-mango">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('mango.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">What if we helped evolve an Aussie icon.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('cat.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">A cats search for the purrrrrfect bank.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card Card--style-mango">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('mango.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">What if we helped evolve an Aussie icon.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('cat.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">A cats search for the purrrrrfect bank.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card Card--style-mango">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('mango.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">What if we helped evolve an Aussie icon.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="http://google.com" class="js-card Card">
+            <div class="Card__box">
+                <span class="Card__clip">
+                    <span class="Card__accent"></span>
+                </span>
+                <span class="Card__image" style="background-image: url('cat.png');"></span>
+                <div class="Card__content">
+                    <h1 class="Card__copy">A cats search for the purrrrrfect bank.</h1>
+                    <span class="Card__link"><i class="fas fa-arrow-right"></i> View project</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    <script src="https://cdn.rawgit.com/enzyme/qoob/8664d9961526596f4876c5f62df0bdae0ee80011/dist/qoob.min.js" charset="utf-8"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <script type="text/javascript">
+    Qoob.documentReady(function() {
+    window.sr = ScrollReveal();
+    var conf = {
+        scale: 1,
+        opacity: 0.5,
+        duration: 500,
+        distance: '8rem',
+        easing: 'ease-out',
+        viewFactor: 0.5,
+    };
+    sr.reveal('.Card');
+
+    var cards = Qoob.find('.js-card');
+    var specs = Qoob.find('.js-card');
+
+    Qoob.on(specs, 'mouseenter', e => {
+        Qoob.addClass(e.target, 'is-active');
+        Qoob.on(e.target, 'mousemove', followMouse);
+    });
+
+    Qoob.on(specs, 'mouseleave', e => {
+        Qoob.removeClass(e.target, 'is-active');
+        Qoob.off(e.target, 'mousemove', followMouse);
+    });
+
+    var followMouse = function followMouse(e) {
+        var card = Qoob.head(Qoob.ancestor(e.target, '.Card'));
+        var follower = Qoob.head(Qoob.children(card, '.Card__follower'));
+        var offset = card.getBoundingClientRect();
+        var follower_bounds = follower.getBoundingClientRect();
+        var doc = document.documentElement;
+        var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+        var x = e.pageX - offset.left - follower_bounds.width / 2;
+        var y = e.pageY - offset.top - top - follower_bounds.height / 2;
+
+        Qoob.css(follower, {
+            transform: 'translate3d(' + x + 'px, ' + y + 'px, 0)',
+        });
+    };
+
+    Qoob.on(cards, 'click', e => {
+        e.preventDefault();
+        var card = Qoob.head(Qoob.ancestor(e.target, '.Card'));
+        var link = Qoob.head(Qoob.attr(card, 'href'));
+
+        Qoob.addClass(card, 'Card--outbound');
+        setTimeout(function() {
+            window.location = link;
+            setTimeout(function() {
+                Qoob.removeClass(card, 'Card--outbound');
+            }, 5000);
+        }, 300);
+    });
+});
+</script>
+</body>
+</html>
