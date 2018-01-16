@@ -312,58 +312,22 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <script type="text/javascript">
     Qoob.documentReady(function() {
-    window.sr = ScrollReveal();
-    var conf = {
-        scale: 1,
-        opacity: 0.5,
-        duration: 500,
-        distance: '8rem',
-        easing: 'ease-out',
-        viewFactor: 0.5,
-    };
-    sr.reveal('.Card');
+  window.sr = ScrollReveal();
+  sr.reveal('.Card');
 
-    var cards = Qoob.find('.js-card');
-    var specs = Qoob.find('.js-card');
+  Qoob.on('.js-card', 'click', e => {
+    e.preventDefault();
+    var card = Qoob.head(Qoob.ancestor(e.target, '.Card'));
+    var link = Qoob.head(Qoob.attr(card, 'href'));
 
-    Qoob.on(specs, 'mouseenter', e => {
-        Qoob.addClass(e.target, 'is-active');
-        Qoob.on(e.target, 'mousemove', followMouse);
-    });
-
-    Qoob.on(specs, 'mouseleave', e => {
-        Qoob.removeClass(e.target, 'is-active');
-        Qoob.off(e.target, 'mousemove', followMouse);
-    });
-
-    var followMouse = function followMouse(e) {
-        var card = Qoob.head(Qoob.ancestor(e.target, '.Card'));
-        var follower = Qoob.head(Qoob.children(card, '.Card__follower'));
-        var offset = card.getBoundingClientRect();
-        var follower_bounds = follower.getBoundingClientRect();
-        var doc = document.documentElement;
-        var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-        var x = e.pageX - offset.left - follower_bounds.width / 2;
-        var y = e.pageY - offset.top - top - follower_bounds.height / 2;
-
-        Qoob.css(follower, {
-            transform: 'translate3d(' + x + 'px, ' + y + 'px, 0)',
-        });
-    };
-
-    Qoob.on(cards, 'click', e => {
-        e.preventDefault();
-        var card = Qoob.head(Qoob.ancestor(e.target, '.Card'));
-        var link = Qoob.head(Qoob.attr(card, 'href'));
-
-        Qoob.addClass(card, 'Card--outbound');
-        setTimeout(function() {
-            window.location = link;
-            setTimeout(function() {
-                Qoob.removeClass(card, 'Card--outbound');
-            }, 5000);
-        }, 300);
-    });
+    Qoob.addClass(card, 'Card--outbound');
+    setTimeout(function() {
+      window.location = link;
+      setTimeout(function() {
+        Qoob.removeClass(card, 'Card--outbound');
+      }, 5000);
+    }, 300);
+  });
 });
 </script>
 </body>
